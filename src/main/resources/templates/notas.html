@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})"
+      lang="pt-br">
+
+<title>Minhas Anotações</title>
+
+<section>
+    <div th:if="${sucesso}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${sucesso}">Sucesso!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <div th:if="${info}" class="alert alert-info alert-dismissible fade show" role="alert">
+        <span th:text="${info}">Info!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <div th:if="${erro}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${erro}">Erro!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <!-- Cabeçalho -->
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-4">
+        <div>
+            <h1 class="h4 m-0 text-center">Minhas Anotações</h1>
+        </div>
+
+        <a class="btn btn-primary" th:href="@{/notas/nova}">
+            Nova anotação
+        </a>
+    </div>
+
+    <!-- Vazio -->
+    <div class="alert alert-info text-center" th:if="${#lists.isEmpty(notas)}">
+        Nenhuma anotação ainda.<br>
+        <span>Clique em "Nova anotação" para adicionar.<span>
+    </div>
+
+    <!-- Lista -->
+    <div class="d-grid gap-3" th:if="${!#lists.isEmpty(notas)}">
+        <div class="card shadow-sm" th:each="nota : ${notas}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start gap-3">
+                    <div class="flex-grow-1">
+                        <h2 class="h6 mb-1 fw-bold" th:text="${nota.titulo}">Título</h2>
+                        <small class="text-muted" th:text="${nota.data}">Data</small>
+                    </div>
+
+                    <form th:action="@{/notas/{id}/deletar(id=${nota.id})}" method="post" class="m-0">
+                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                onclick="return confirm('Deseja realmente deletar esta anotação?')">
+                            Deletar
+                        </button>
+                    </form>
+                </div>
+
+                <hr class="my-3">
+
+                <p class="mb-0" th:text="${nota.conteudo}">
+                    Conteúdo
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+</html>

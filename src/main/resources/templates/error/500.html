@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})"
+      lang="pt-br">
+<title>Página não encontrada</title>
+
+<section class="text-center">
+    <div class="py-4">
+        <div class="display-5">500</div>
+        <h1 class="h4 mt-2">Erro Interno do Servidor</h1>
+        <p class="text-muted">Ocorreu um erro interno no servidor, tente novamente mais tarde.</p>
+
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <a class="btn btn-primary" th:href="@{/}">Voltar para a Home</a>
+        </div>
+    </div>
+</section>
+</html>

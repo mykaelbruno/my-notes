@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})"
+      lang="pt-br">
+
+<title>Nova Anotação</title>
+
+<section>
+    <div th:if="${sucesso}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${sucesso}">Sucesso!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <div th:if="${erro}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${erro}">Erro!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <h1 class="h4 mb-3 text-center">Nova Anotação</h1>
+
+    <form th:action="@{/notas}" th:object="${nota}" method="post" class="vstack gap-3">
+        <div>
+            <label class="form-label">Título</label>
+            <input class="form-control" th:field="*{titulo}" placeholder="Título da nota">
+            <div class="text-danger small mt-1" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+        </div>
+
+        <div>
+            <label class="form-label">Conteúdo</label>
+            <textarea class="form-control" th:field="*{conteudo}" rows="5" placeholder="Conteúdo da nota"></textarea>
+            <div class="text-danger small mt-1" th:if="${#fields.hasErrors('conteudo')}" th:errors="*{conteudo}"></div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+            <a class="btn btn-outline-danger" th:href="@{/notas}">Cancelar</a>
+            <button class="btn btn-outline-success" type="submit">Salvar</button>
+        </div>
+    </form>
+</section>
+</html>

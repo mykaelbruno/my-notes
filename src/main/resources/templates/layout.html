@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" th:fragment="layout (title, content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootswatch -->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/flatly/bootstrap.min.css" rel="stylesheet">
+
+    <!-- opcional: ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Seu CSS (se tiver) -->
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+    <title th:replace="${title}">My Notes</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background: linear-gradient(90deg, #0e4996, #1b6cd3);">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" th:href="@{/}">
+            <span class="bg-white bg-opacity-10 rounded-3 px-2 py-1">
+                <i class="bi bi-journal-text"></i>
+            </span>
+            <span>My Notes</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-3 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3" th:href="@{/notas/nova}">
+                        <i class="bi bi-plus-circle me-1"></i> Nova
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3" th:href="@{/notas}">
+                        <i class="bi bi-card-list me-1"></i> Minhas notas
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Conteúdo -->
+<main class="container flex-grow-1 py-4">
+    <div class="mx-auto" style="max-width: 980px;">
+        <!-- “miolo” com card-base pra não ficar solto -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <div th:replace="${content}">
+                    <!-- conteúdo entra aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="mt-auto">
+    <div class="py-4" style="background: #0e4996; color: rgba(255,255,255,.9);">
+        <div class="container text-center">
+            <div class="d-flex flex-column align-items-center justify-content-center gap-2">
+                <small class="fw-semibold">&copy; 2026 My Notes</small>
+                <small style="opacity:.9">
+                    Feito com <span style="color:#ffdde1;">♥</span> em Spring + Thymeleaf
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+</body>
+</html>
