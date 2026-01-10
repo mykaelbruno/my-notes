@@ -42,34 +42,16 @@ Essa estrutura permite que o projeto evolua facilmente para cenários mais compl
 
 Abaixo um diagrama simples da estrutura que utilizei:
 
-┌──────────────────────┐        ┌────────────────────────┐
-│      Navegador       │        │   Cliente API (JSON)   │
-│  (HTML / Formulário) │        │ (Postman / Frontend)   │
-└──────────┬───────────┘        └───────────┬────────────┘
-           │                                │
-           ▼                                ▼
-┌──────────────────────┐        ┌────────────────────────┐
-│   Web Controller     │        │    REST Controller     │
-│ (Thymeleaf / MVC)    │        │    (@RestController)  │
-└──────────┬───────────┘        └───────────┬────────────┘
-           │                                │
-           └──────────────┬─────────────────┘
-                          ▼
-                 ┌──────────────────┐
-                 │     Service      │
-                 │  (Regras de      │
-                 │   Negócio)       │
-                 └─────────┬────────┘
-                           ▼
-                 ┌──────────────────┐
-                 │   Repository     │
-                 │ (Spring Data JPA)│
-                 └─────────┬────────┘
-                           ▼
-                 ┌──────────────────┐
-                 │     Database     │
-                 │ (H2 / Relacional)│
-                 └──────────────────┘
+flowchart TD
+    A[Navegador<br/>(HTML / Formulários)] --> B[Web Controller<br/>(Thymeleaf / MVC)]
+    C[Cliente API<br/>(Postman / Frontend)] --> D[REST Controller<br/>(@RestController)]
+
+    B --> E[Service<br/>(Regras de Negócio)]
+    D --> E
+
+    E --> F[Repository<br/>(Spring Data JPA)]
+    F --> G[Database<br/>(H2 / Relacional)]
+
 
 ---
 
