@@ -40,19 +40,6 @@ Ambas as abordagens utilizam a mesma camada de Service, garantindo
 
 Essa estrutura permite que o projeto evolua facilmente para cenários mais complexos, como a adição de um frontend SPA ou integração com aplicações externas.
 
-Abaixo um diagrama simples da estrutura que utilizei:
-
-flowchart TD
-    A[Navegador<br/>(HTML / Formulários)] --> B[Web Controller<br/>(Thymeleaf / MVC)]
-    C[Cliente API<br/>(Postman / Frontend)] --> D[REST Controller<br/>(@RestController)]
-
-    B --> E[Service<br/>(Regras de Negócio)]
-    D --> E
-
-    E --> F[Repository<br/>(Spring Data JPA)]
-    F --> G[Database<br/>(H2 / Relacional)]
-
-
 ---
 
 ## 🚀 Tecnologias Utilizadas
