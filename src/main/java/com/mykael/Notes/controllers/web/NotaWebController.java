@@ -12,11 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/notas")
-public class WebController {
+public class NotaWebController {
 
     private final NotaService notaService;
 
-    public WebController(NotaService notaService) {
+    public NotaWebController(NotaService notaService) {
         this.notaService = notaService;
     }
 
